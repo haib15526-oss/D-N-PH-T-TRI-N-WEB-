@@ -12,7 +12,6 @@
   <link rel="stylesheet" href="./store-header.css?v=2">
   <link rel="stylesheet" href="./checkout.css?v=3">
   <link rel="stylesheet" href="./store-footer.css?v=2">
-<link rel="stylesheet" href="./contact-tools.css?v=2">
 </head>
 
 <body>
@@ -452,7 +451,6 @@
     } catch (error) {
       if (requestId !== quoteRequestId) return;
       if (error.code === "insufficient-stock" && error.items?.length) {
-        // Show the real stock on each line so the customer sees which product to reduce.
         error.items.forEach((shortage) => {
           const cartItem = Cart.find((item) => String(item.id) === String(shortage.id));
           if (cartItem) cartItem.stockQuantity = Math.max(0, Number(shortage.available) || 0);
@@ -534,6 +532,5 @@
   });
   void initializeCheckout();
 </script>
-<script src="./contact-tools.js?v=1"></script>
 </body>
 </html>
